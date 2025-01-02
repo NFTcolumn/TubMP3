@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const input = document.getElementById('youtube-url');
     const downloadBtn = document.getElementById('download-btn');
-    const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:3000' : 'https://tubmp3-53e90f496b2a.herokuapp.com';
+    const API_URL = 'http://localhost:3000';
 
     downloadBtn.addEventListener('click', async () => {
         let url = input.value.trim();
