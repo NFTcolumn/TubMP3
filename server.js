@@ -29,13 +29,13 @@ app.post('/download', async (req, res) => {
         }
 
         // Get video info to get the title
-        const { stdout: info } = await execAsync(`yt-dlp --dump-json "${url}"`);
+        const { stdout: info } = await execAsync(`python3 -m yt_dlp --dump-json "${url}"`);
         const { title } = JSON.parse(info);
         const safeTitle = title.replace(/[^\w\s]/gi, '');
         const outputPath = join(downloadsDir, `${safeTitle}.mp3`);
 
         // Download and convert to MP3
-        await execAsync(`yt-dlp -x --audio-format mp3 -o "${outputPath}" "${url}"`);
+        await execAsync(`python3 -m yt_dlp -x --audio-format mp3 -o "${outputPath}" "${url}"`);
 
         res.download(outputPath, `${safeTitle}.mp3`, (err) => {
             if (!err) {
